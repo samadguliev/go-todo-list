@@ -1,4 +1,4 @@
-module github.com/divrhino/divrhino-trivia
+module github.com/samadguliev/go-todo-list
 
 go 1.19
 

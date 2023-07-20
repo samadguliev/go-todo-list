@@ -6,8 +6,6 @@ node_modules*
 # local env files
 .env
 
-go.mod
-go.sum
 tmp
 
 # Log files
