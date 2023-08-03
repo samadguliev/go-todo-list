@@ -13,6 +13,7 @@
       <tr>
         <th>ID</th>
         <th>Task</th>
+        <th>Done</th>
         <th>Delete</th>
         <th>Edit</th>
 
@@ -22,6 +23,9 @@
       <tr v-for="(task,index) in tasks" :key="index">
         <td>{{ task.ID }}</td>
         <td>{{ task.task }}</td>
+        <td>
+          <input type="checkbox" :checked="task.is_done" @change="Check(index)">
+        </td>
 
         <td>
           <button class="del-btn" @click="deleteTask(index)">Delete</button>
@@ -112,6 +116,17 @@ export default {
       } else {
         this.addTask(this.task)
       }
+    },
+
+    Check(index) {
+      let task = this.tasks[index]
+
+      task.isDone = !task.is_done
+
+      axios
+          .put(`${API_URL}/todos/${task.ID}`, task)
+          .then(response => (this.tasks.push(response.data)))
+          .catch(error => console.log(error));
     }
 
   }
